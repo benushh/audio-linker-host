@@ -119,6 +119,30 @@ body {
         cursor: not-allowed;
       }
     }
+
+    .types{
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+
+      button{
+        color: white;
+        outline: none;
+        padding: 5px 10px;
+        border: 1px solid black;
+        border-radius: 5px;
+        font-weight: bold;
+        font-size: 20px;
+        background-color: #8f0000;
+        transition: 0.2s ease-in-out; 
+        cursor: pointer;
+
+        &:hover {
+          background-color: lightcoral;
+          color: black;
+        }
+      }
+    }
   }
 }
 

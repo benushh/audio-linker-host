@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { ToastContainer } from "react-toastify";
 import ScaleLoader from "react-spinners/ScaleLoader";
-import { fetchFile } from "./services/apiCall";
+import { fetchAudioFile, fetchVideoFile } from "./services/apiCalls";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.scss";
 
 const App = () => {
   const [url, setUrl] = useState("");
   const [loading, setLoading] = useState(false);
+  const [fileType, setFileType] = useState("mp3");
 
   const isValidUrl = (url: string) => {
     const youtubeUrlPattern =
@@ -19,8 +20,19 @@ const App = () => {
     setLoading(true);
     const id = url.split("=")[1].split("&")[0];
 
-    const res = await fetchFile(id);
-    if (res?.status === 200) window.location.href = res.data.link;
+    if (fileType === "mp3") {
+      const res = await fetchAudioFile(id);
+      if (res?.status === 200) window.location.href = res.data.link;
+    }
+
+    if (fileType === "mp4") {
+      const res = await fetchVideoFile(id);
+      if (res?.status === 200) {
+        const link = res.data.formats[0].url;
+        window.location.href = link;
+      }
+    }
+
     setLoading(false);
   };
 
@@ -37,7 +49,7 @@ const App = () => {
           value={url}
           onChange={(event) => setUrl(event.target.value)}
         />
-        <span>It might take a moment to convert the video</span>
+        <span>It might take a moment to convert the video.</span>
         {loading && (
           <>
             <ScaleLoader color={"#00c8ff"} loading={loading} />
@@ -51,6 +63,28 @@ const App = () => {
       >
         Download
       </button>
+      <div className="types">
+        <button
+          className="mp3Button"
+          onClick={() => setFileType("mp3")}
+          style={{
+            backgroundColor: fileType === "mp3" ? "lightcoral" : undefined,
+            color: fileType === "mp3" ? "black" : undefined,
+          }}
+        >
+          MP3
+        </button>
+        <button
+          className="mp4Button"
+          onClick={() => setFileType("mp4")}
+          style={{
+            backgroundColor: fileType === "mp4" ? "lightcoral" : undefined,
+            color: fileType === "mp4" ? "black" : undefined,
+          }}
+        >
+          MP4
+        </button>
+      </div>
       <ToastContainer />
     </div>
   );
