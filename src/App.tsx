@@ -16,9 +16,20 @@ const App = () => {
     return youtubeUrlPattern.test(url);
   };
 
+  const getVideoId = (url: string) => {
+    let id = "";
+    if (url.includes("?v=")) {
+      id = url.split("?v=")[1];
+    } else if (url.includes("youtu.be/")) {
+      id = url.split("youtu.be/")[1];
+    }
+    id = id?.split(/[?&]/)[0];
+    return id;
+  };
+
   const download = async () => {
     setLoading(true);
-    const id = url.split("=")[1].split("&")[0];
+    const id = getVideoId(url);
 
     if (fileType === "mp3") {
       const res = await fetchAudioFile(id);
