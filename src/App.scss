@@ -1,0 +1,139 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+* {
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: linear-gradient(
+    to right top,
+    #ffffff,
+    #f6f6f6,
+    #eeeeee,
+    #e5e5e5,
+    #dddddd,
+    #d5d5d5,
+    #cecece,
+    #c6c6c6,
+    #bebdbe,
+    #b5b5b5,
+    #adacad,
+    #a5a4a4
+  );
+
+  .app {
+    background-color: black;
+    height: 75vh;
+    width: 20rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 30px;
+    padding: 3rem 1.5rem;
+    justify-content: space-between;
+    border: 1px solid black;
+    background-image: linear-gradient(
+      to right top,
+      #eb7f7f,
+      #ea7172,
+      #e86365,
+      #e55359,
+      #e2424c,
+      #da3741,
+      #d22a37,
+      #c91b2c,
+      #ba1421,
+      #ac0e17,
+      #9d060c,
+      #8f0000
+    );
+
+    .logo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      img {
+        width: 25%;
+        filter: invert(100%) grayscale(100%);
+      }
+
+      h2 {
+        color: white;
+        margin-bottom: 0;
+      }
+    }
+
+    .converter {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: white;
+
+      input {
+        background: none;
+        border: none;
+        outline: none;
+        color: white;
+        font-size: 1.2rem;
+        width: 100%;
+        padding: 0.4rem 0.1rem;
+        border-bottom: 1px solid white;
+
+        &::placeholder {
+          text-align: center;
+          color: rgba(255, 255, 255, 0.5);
+        }
+      }
+
+      span {
+        font-size: 0.8rem;
+        margin: 10px 0;
+      }
+    }
+
+    .downloadButton {
+      background-color: white;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: black;
+      height: 2.7rem;
+      cursor: pointer;
+      box-shadow: 0 5px 8px 3px rgba(0, 0, 0, 0.5);
+      transition: 0.2s ease-in-out;
+
+      &:hover {
+        background-color: rgb(200, 255, 200);
+        box-shadow: 0 5px 15px 5px rgba(0, 0, 0, 0.5);
+      }
+
+      &:disabled {
+        background-color: lightgray;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    .app {
+      width: 100vw;
+      height: 100vh;
+      border-radius: 0;
+
+      .logo {
+        img {
+          width: 20%;
+        }
+      }
+    }
+  }
+}
